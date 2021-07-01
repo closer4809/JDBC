@@ -39,7 +39,7 @@ public class AuthorBookSelectApp {
 		    query += "        au.author_name, ";
 		    query += "        au.author_desc ";
 			query += " from book bo, author au";
-			query += " where author_id = ? ";
+			query += " where au.author_id = bo.author_id";
 			
 			
 			
@@ -52,14 +52,14 @@ public class AuthorBookSelectApp {
 		    // 4.결과처리
 
 			while(rs.next()) {
-				int bookId = rs.getInt("bo.book_id");
-				String titleT = rs.getString("bo.title");
-				String pubsP = rs.getString("bo.pubs");
-				String pubDate = rs.getString("bo.pub_date");
-				int authorId = rs.getInt("bo.author_id");
+				int bookId = rs.getInt("book_id");
+				String titleT = rs.getString("title");
+				String pubsP = rs.getString("pubs");
+				String pubDate = rs.getString("pub_date");
+				int authorId = rs.getInt("author_id");
 				
-		    	String authorName = rs.getString("au.author_name");
-		    	String authorDesc = rs.getString("au.author_desc");
+		    	String authorName = rs.getString("author_name");
+		    	String authorDesc = rs.getString("author_desc");
 				
 				
 				System.out.println(bookId + ", " + titleT + ", " + pubsP + ", " + pubDate + ", " + authorId + ","  + authorName + "," + authorDesc);
