@@ -6,7 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class BookSelectApp {
+public class BookSelectOneApp {
 
 	public static void main(String[] args) {
 		// 0. import java.sql.*;
@@ -19,7 +19,7 @@ public class BookSelectApp {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			// 2. Connection 얻어오기
 			String url = "jdbc:oracle:thin:@3.36.114.215:1521:xe";
-			conn = DriverManager.getConnection(url, "webdb", "manager");
+			conn = DriverManager.getConnection(url, "webdb", "manaager");
 			// 3. SQL문 준비 / 바인딩 / 실행
 			String query ="";
 			query += " select book_id, ";
@@ -28,8 +28,11 @@ public class BookSelectApp {
 			query += " 		  pub_date, ";
 			query += " 		  author_id ";
 			query += " from   book ";
+			query += " where book_id =? ";
+			
 			
 			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, 5);
 			rs=pstmt.executeQuery();
 			// 4.결과처리
 			while(rs.next()) {
